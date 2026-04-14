@@ -1,3 +1,16 @@
+"""
+=========================================================
+🎯 Objective: CBC Padding Oracle Attack
+💀 Vulnerability: Verbose PKCS#7 padding validation errors
+🛠️ Method: 
+   1. Intercepts the IV and Ciphertext blocks.
+   2. Iterates block by block, altering the previous ciphertext block (which acts as the IV for the current block) byte by byte, starting from the end.
+   3. Sends the altered payload to the server's decryption endpoint.
+   4. If the server accepts the padding (no padding error), it reveals the intermediate state.
+   5. XORs the intermediate state with the original IV/Ciphertext block to extract the plaintext byte.
+   6. Optimized with a custom charset for faster brute-forcing of printable characters.
+=========================================================
+"""
 from pwn import *
 
 # Configurazione
