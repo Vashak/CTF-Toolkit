@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: LFSR (Linear Feedback Shift Register) State & Tap Recovery
+💀 Vulnerability: Small state space (6-bit)
+🛠️ Method: 
+   1. Offline brute-force of all possible 6-bit initial states (seeds) and tap configurations.
+   2. Simulates the LFSR bit-shifting and output generation for both MSB and LSB endianness.
+   3. XORs the generated keystream with the ciphertext.
+   4. Prunes invalid paths instantly if the resulting character is not printable ASCII (32-126).
+=========================================================
+"""
 cipher = [0x9a, 0x1a, 0x7c, 0x38, 0xa7, 0x98, 0x77, 0x90, 0xe0, 0xad, 0x7a, 0xef, 0x69, 0xc1, 0x2f, 0x5a]
 
 def solve():
