@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: Custom XOR Stream Cipher Collapse
+💀 Vulnerability: Public stream generation & Known Plaintext (1 byte)
+🛠️ Method: 
+   1. Replicates the server's public generation function locally to calculate the predictable noise block for any given index.
+   2. Exploits the involutory nature of XOR (A ⊕ B ⊕ B = A).
+   3. Uses the first known character of the flag ('C') to isolate and recover the static secret key (K_secret).
+   4. Applies the recovered key and the public function to decrypt the entire ciphertext byte by byte.
+=========================================================
+"""
 # 1. Definiamo prima il nostro "mattone" matematico
 def calcola_blocco_pubblico(i):
     blocco = 0
