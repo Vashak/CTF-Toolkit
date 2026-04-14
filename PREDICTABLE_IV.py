@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: CBC Bit-Flipping Authentication Bypass
+💀 Vulnerability: Unauthenticated IV / CBC Malleability
+🛠️ Method: 
+   1. Registers a dummy account ("bdmin") to receive a valid login token (IV + Ciphertext).
+   2. Exploits the CBC decryption property: Plaintext = Decrypt(Ciphertext) ⊕ IV.
+   3. Modifies a specific byte in the IV using XOR arithmetic (IV[12] ⊕ 'b' ⊕ 'a') to alter the decrypted plaintext from "bdmin" to "admin".
+   4. Sends the forged token to impersonate the administrator and execute privileged commands.
+=========================================================
+"""
 from pwn import *
 import ast
 
