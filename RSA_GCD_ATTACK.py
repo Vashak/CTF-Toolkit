@@ -1,3 +1,16 @@
+"""
+=========================================================
+🎯 Objective: RSA Common Factor Attack (GCD)
+💀 Vulnerability: Poor PRNG causing Prime Number Reuse across Moduli
+🛠️ Method: 
+   1. Connects via sockets to rapidly download multiple RSA moduli (N_clones).
+   2. Calculates the Greatest Common Divisor (GCD) pairwise between all gathered moduli.
+   3. If two moduli share a prime factor, the GCD instantly extracts it, breaking the encryption.
+   4. Identifies the two prime factors that differ by at most 3 digits.
+   5. Performs a targeted 3-digit brute-force to reconstruct the exact original prime P.
+   6. Calculates Q, Phi, and D to decrypt the RSA jackpot ciphertext.
+=========================================================
+"""
 import socket
 import re
 from math import gcd
