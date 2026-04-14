@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: DES-ECB Oracle Bypass & OTP Extraction
+💀 Vulnerability: ECB Mode Determinism & Known Padding
+🛠️ Method: 
+   1. Exploits the DES-ECB block cipher mode by sending an exact 8-byte payload, forcing the server to create a standalone block containing only standard PKCS#7 padding.
+   2. Knowing the plaintext (the padding), locally calculates the expected DES encryption output.
+   3. XORs the server's ciphertext with the locally calculated ECB block to leak the hidden OTP key.
+   4. Requests the encrypted flag and decrypts it locally by stripping the OTP layer, the DES layer, the padding, and the inner OTP layer.
+=========================================================
+"""
 from pwn import *
 from Crypto.Cipher import DES
 import sys
