@@ -1,8 +1,19 @@
+"""
+=========================================================
+🎯 Objective: Local Binary Error-Based Oracle Extraction
+💀 Vulnerability: Character-by-character validation with verbose error output
+🛠️ Method: 
+   1. Wraps a local compiled ELF binary using Python's subprocess.
+   2. Brute-forces the flag one character at a time.
+   3. Uses the standard output/error (stdout/stderr) as an oracle: the absence of the specific error "Learn to move properly" indicates a correct character guess.
+   4. Appends the correct character and repeats until the closing brace '}' is found.
+=========================================================
+"""
 import subprocess
 import string
 
 # --- 1. CONFIGURAZIONE ---
-# Inserisci il nome del file che hai scaricato (es. "./challenge")
+# nome file 
 target = "./cha-cha" 
 
 # La base della flag che conosciamo già
