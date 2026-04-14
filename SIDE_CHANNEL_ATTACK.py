@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: Remote Timing Side-Channel Attack
+💀 Vulnerability: Insecure string comparison (early exit)
+🛠️ Method: 
+   1. Sends partial flag guesses appended with a sentinel character (e.g., '}').
+   2. Measures the server's response latency (CPU cycles or network time).
+   3. Exploits the time delta: if a character is correct, the server performs an extra check on the sentinel, taking slightly longer.
+   4. Sorts responses by latency, verifying the "best" character via a statistically significant time gap (>15 cycles).
+=========================================================
+"""
 import socket
 import re
 
