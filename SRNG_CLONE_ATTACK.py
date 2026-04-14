@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: Mersenne Twister (MT19937) State Recovery
+💀 Vulnerability: Exposing 624 consecutive 32-bit random outputs
+🛠️ Method: 
+   1. Connects to the server and intentionally loses 624 consecutive rounds to capture the raw PRNG outputs.
+   2. Feeds the 624 integers into the RandCrack algorithm to untemper the values and reconstruct the MT19937 state matrix.
+   3. With the internal state perfectly cloned, predicts the exact 32-bit output for the 625th round.
+   4. Submits the predicted number to win the game and extract the flag.
+=========================================================
+"""
 from pwn import *
 from randcrack import RandCrack
 
