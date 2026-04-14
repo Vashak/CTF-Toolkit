@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: AES-CTR Keystream Reuse & Counter Sync
+💀 Vulnerability: Nonce Length Manipulation
+🛠️ Method: 
+   1. Set a long nonce (15 bytes) to encrypt the flag at a specific counter state.
+   2. Shorten the nonce (14 bytes) to allow more counter space, preventing server crashes.
+   3. Desync the counter by 252 iterations to align with the flag's encryption block.
+   4. Perform a Known Plaintext Attack (KPA) to leak the keystream and decrypt the flag.
+=========================================================
+"""
 from pwn import *
 
 r = remote('recycle.challs.cyberchallenge.it', 38213)
