@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: Stream Cipher Known Plaintext Attack (KPA)
+💀 Vulnerability: Keystream reuse / Deterministic keystream
+🛠️ Method: 
+   1. Uses a known plaintext (p_rand) and its corresponding ciphertext (c_rand).
+   2. Recovers the raw keystream segment via XOR: Keystream = Plaintext ⊕ Ciphertext.
+   3. Slides the recovered keystream across the encrypted flag byte-by-byte.
+   4. Filters outputs searching for known flag formats (e.g., "CCIT{").
+=========================================================
+"""
 def xor(b1, b2):
     return bytes([a ^ b for a, b in zip(b1, b2)])
 
