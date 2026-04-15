@@ -1,3 +1,17 @@
+"""
+=========================================================
+🎯 Objective: RSA Signature Forgery via Duplicate Key Selection
+💀 Vulnerability: Insecure Parameter Input (User-provided p, q)
+🛠️ Method: 
+   1. Requests a target hash (H) and a signature (sig) from the server.
+   2. Generates two custom 512-bit "Smooth Primes" (p, q).
+   3. Solves the Discrete Logarithm Problem (DLP) modulo p and q 
+      independently using the Pohlig-Hellman algorithm.
+   4. Uses the Chinese Remainder Theorem (CRT) to unify the 
+      exponents into a single public exponent (e).
+   5. Forges a valid modulus n = p*q where sig^e ≡ H (mod n).
+=========================================================
+"""
 from pwn import *
 import random
 from sympy import isprime, discrete_log
