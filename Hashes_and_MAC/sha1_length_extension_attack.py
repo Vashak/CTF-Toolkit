@@ -1,3 +1,16 @@
+"""
+-------------------------------------------------------------------------------
+🎯 Objective: SHA1 Length Extension & Logic Truncation Bypass
+💀 Vulnerability: MAC computed on Base64 string + Insecure split() parsing
+🛠️ Method:
+   1. Obtains a valid SHA1 MAC (Testimone) for a Base64 encoded payload.
+   2. Uses hlextend to forge a new hash by calculating the exact SHA1 padding.
+   3. Appends the malicious tail: '&id=0&name=flag&author=admin'.
+   4. Re-encodes the forged payload in Base64 before sending it to the server.
+   5. Exploits `data.split(b"&")[1:]` to truncate the original payload and padding,
+      forcing the server to parse only the injected cleartext parameters.
+-------------------------------------------------------------------------------
+"""
 from pwn import *
 import base64
 import hlextend
