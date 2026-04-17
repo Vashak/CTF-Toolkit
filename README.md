@@ -28,6 +28,7 @@ Below is an index of the exploits available in this toolkit. Files are organized
 | **`lfsr_bruteforce.py`** | Hardware/LFSR | State Space Exhaustion | Performs an offline brute-force of a 6-bit LFSR's seed, tap mask, and endianness. |
 | `rsa_key_selection.py` | Asymmetric | Signature Forgery (Smooth Primes) | Exploits insecure RSA factor input by generating smooth primes to solve the Discrete Logarithm Problem (DLP) using Pohlig-Hellman and CRT. |
 | `sha1_length_extension.py` | Hashes & MACs | Length Extension & Truncation | Exploits a SHA1 length extension attack on a Base64 MAC, chained with an insecure `split()` logic to truncate original parameters and inject malicious ones. |
+| `aes_hash_collision.py` | Hashes & MACs | Padding-as-Key Collision | Exploits a custom AES-based hash function by using predictable PKCS#7 padding as a decryption key to forge a 16-byte collision against a 32-byte target. |
 
 ---
 
