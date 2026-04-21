@@ -29,6 +29,7 @@ Below is an index of the exploits available in this toolkit. Files are organized
 | `rsa_key_selection.py` | Asymmetric | Signature Forgery (Smooth Primes) | Exploits insecure RSA factor input by generating smooth primes to solve the Discrete Logarithm Problem (DLP) using Pohlig-Hellman and CRT. |
 | `sha1_length_extension.py` | Hashes & MACs | Length Extension & Truncation | Exploits a SHA1 length extension attack on a Base64 MAC, chained with an insecure `split()` logic to truncate original parameters and inject malicious ones. |
 | `aes_hash_collision.py` | Hashes & MACs | Padding-as-Key Collision | Exploits a custom AES-based hash function by using predictable PKCS#7 padding as a decryption key to forge a 16-byte collision against a 32-byte target. |
+| `des_whitening_bypass.py` | Block Ciphers | ECB Determinism & Whitening | Exploits 3DES-ECB block alignment and predictable padding to bypass a custom XOR whitening layer and extract the hidden OTP. |
 
 ---
 
