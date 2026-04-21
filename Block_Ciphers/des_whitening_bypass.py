@@ -1,3 +1,14 @@
+"""
+=========================================================
+🎯 Objective: Custom Whitening Bypass & OTP Extraction
+💀 Vulnerability: ECB Determinism / Predictable Padding Alignment
+🛠️ Method: 
+   1. Interrogates the encryption oracle with a 1-byte input to force a fully predictable, isolated second block containing exactly 8 bytes of PKCS#7 padding (0x08).
+   2. Exploits the stateless nature of ECB mode by locally encrypting the known padding block using the user-chosen 3DES key.
+   3. Extracts the 8-byte OTP by performing a XOR between the server's second ciphertext block and the locally calculated ciphertext.
+   4. Recovers the final flag by retrieving the encrypted flag token and peeling back the cryptographic layers in reverse order: XOR(Unpad(Decrypt(Ciphertext ⊕ OTP)), OTP).
+=========================================================
+"""
 from pwn import *
 from Crypto.Cipher import DES3
 from Crypto.Util.Padding import unpad
